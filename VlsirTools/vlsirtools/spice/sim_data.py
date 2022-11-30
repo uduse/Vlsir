@@ -9,7 +9,7 @@ TODO: Go from proto -> sim_result
 """
 
 
-from typing import List, Mapping, Union, ClassVar
+from typing import List, Mapping, Union, ClassVar, Any
 from enum import Enum
 from dataclasses import dataclass
 import numpy as np
