@@ -7,11 +7,12 @@
  */
 // GENERATED CODE -- DO NOT EDIT!
 
-goog.provide('proto.vlsir.spice.OpInput');
+goog.provide('proto.vlsir.spice.MonteInput');
 
 goog.require('jspb.BinaryReader');
 goog.require('jspb.BinaryWriter');
 goog.require('jspb.Message');
+goog.require('proto.vlsir.spice.Analysis');
 goog.require('proto.vlsir.spice.Control');
 
 
@@ -25,19 +26,19 @@ goog.require('proto.vlsir.spice.Control');
  * @extends {jspb.Message}
  * @constructor
  */
-proto.vlsir.spice.OpInput = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.vlsir.spice.OpInput.repeatedFields_, null);
+proto.vlsir.spice.MonteInput = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.vlsir.spice.MonteInput.repeatedFields_, null);
 };
-goog.inherits(proto.vlsir.spice.OpInput, jspb.Message);
+goog.inherits(proto.vlsir.spice.MonteInput, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
-  proto.vlsir.spice.OpInput.displayName = 'proto.vlsir.spice.OpInput';
+  proto.vlsir.spice.MonteInput.displayName = 'proto.vlsir.spice.MonteInput';
 }
 /**
  * List of repeated fields within this message type.
  * @private {!Array<number>}
  * @const
  */
-proto.vlsir.spice.OpInput.repeatedFields_ = [5];
+proto.vlsir.spice.MonteInput.repeatedFields_ = [4,5];
 
 
 
@@ -52,8 +53,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     for transitional soy proto support: http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.vlsir.spice.OpInput.prototype.toObject = function(opt_includeInstance) {
-  return proto.vlsir.spice.OpInput.toObject(opt_includeInstance, this);
+proto.vlsir.spice.MonteInput.prototype.toObject = function(opt_includeInstance) {
+  return proto.vlsir.spice.MonteInput.toObject(opt_includeInstance, this);
 };
 
 
@@ -62,13 +63,17 @@ proto.vlsir.spice.OpInput.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Whether to include the JSPB
  *     instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.vlsir.spice.OpInput} msg The msg instance to transform.
+ * @param {!proto.vlsir.spice.MonteInput} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.vlsir.spice.OpInput.toObject = function(includeInstance, msg) {
+proto.vlsir.spice.MonteInput.toObject = function(includeInstance, msg) {
   var f, obj = {
     analysisName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    npts: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    seed: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    anList: jspb.Message.toObjectList(msg.getAnList(),
+    proto.vlsir.spice.Analysis.toObject, includeInstance),
     ctrlsList: jspb.Message.toObjectList(msg.getCtrlsList(),
     proto.vlsir.spice.Control.toObject, includeInstance)
   };
@@ -84,23 +89,23 @@ proto.vlsir.spice.OpInput.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.vlsir.spice.OpInput}
+ * @return {!proto.vlsir.spice.MonteInput}
  */
-proto.vlsir.spice.OpInput.deserializeBinary = function(bytes) {
+proto.vlsir.spice.MonteInput.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.vlsir.spice.OpInput;
-  return proto.vlsir.spice.OpInput.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.vlsir.spice.MonteInput;
+  return proto.vlsir.spice.MonteInput.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.vlsir.spice.OpInput} msg The message object to deserialize into.
+ * @param {!proto.vlsir.spice.MonteInput} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.vlsir.spice.OpInput}
+ * @return {!proto.vlsir.spice.MonteInput}
  */
-proto.vlsir.spice.OpInput.deserializeBinaryFromReader = function(msg, reader) {
+proto.vlsir.spice.MonteInput.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -110,6 +115,19 @@ proto.vlsir.spice.OpInput.deserializeBinaryFromReader = function(msg, reader) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
       msg.setAnalysisName(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setNpts(value);
+      break;
+    case 3:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setSeed(value);
+      break;
+    case 4:
+      var value = new proto.vlsir.spice.Analysis;
+      reader.readMessage(value,proto.vlsir.spice.Analysis.deserializeBinaryFromReader);
+      msg.addAn(value);
       break;
     case 5:
       var value = new proto.vlsir.spice.Control;
@@ -129,9 +147,9 @@ proto.vlsir.spice.OpInput.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.vlsir.spice.OpInput.prototype.serializeBinary = function() {
+proto.vlsir.spice.MonteInput.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.vlsir.spice.OpInput.serializeBinaryToWriter(this, writer);
+  proto.vlsir.spice.MonteInput.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -139,17 +157,39 @@ proto.vlsir.spice.OpInput.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.vlsir.spice.OpInput} message
+ * @param {!proto.vlsir.spice.MonteInput} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.vlsir.spice.OpInput.serializeBinaryToWriter = function(message, writer) {
+proto.vlsir.spice.MonteInput.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getAnalysisName();
   if (f.length > 0) {
     writer.writeString(
       1,
       f
+    );
+  }
+  f = message.getNpts();
+  if (f !== 0) {
+    writer.writeInt64(
+      2,
+      f
+    );
+  }
+  f = message.getSeed();
+  if (f !== 0) {
+    writer.writeInt64(
+      3,
+      f
+    );
+  }
+  f = message.getAnList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      4,
+      f,
+      proto.vlsir.spice.Analysis.serializeBinaryToWriter
     );
   }
   f = message.getCtrlsList();
@@ -167,14 +207,75 @@ proto.vlsir.spice.OpInput.serializeBinaryToWriter = function(message, writer) {
  * optional string analysis_name = 1;
  * @return {string}
  */
-proto.vlsir.spice.OpInput.prototype.getAnalysisName = function() {
+proto.vlsir.spice.MonteInput.prototype.getAnalysisName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.vlsir.spice.OpInput.prototype.setAnalysisName = function(value) {
+proto.vlsir.spice.MonteInput.prototype.setAnalysisName = function(value) {
   jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional int64 npts = 2;
+ * @return {number}
+ */
+proto.vlsir.spice.MonteInput.prototype.getNpts = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/** @param {number} value */
+proto.vlsir.spice.MonteInput.prototype.setNpts = function(value) {
+  jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+/**
+ * optional int64 seed = 3;
+ * @return {number}
+ */
+proto.vlsir.spice.MonteInput.prototype.getSeed = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/** @param {number} value */
+proto.vlsir.spice.MonteInput.prototype.setSeed = function(value) {
+  jspb.Message.setProto3IntField(this, 3, value);
+};
+
+
+/**
+ * repeated Analysis an = 4;
+ * @return {!Array<!proto.vlsir.spice.Analysis>}
+ */
+proto.vlsir.spice.MonteInput.prototype.getAnList = function() {
+  return /** @type{!Array<!proto.vlsir.spice.Analysis>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.vlsir.spice.Analysis, 4));
+};
+
+
+/** @param {!Array<!proto.vlsir.spice.Analysis>} value */
+proto.vlsir.spice.MonteInput.prototype.setAnList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 4, value);
+};
+
+
+/**
+ * @param {!proto.vlsir.spice.Analysis=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.vlsir.spice.Analysis}
+ */
+proto.vlsir.spice.MonteInput.prototype.addAn = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 4, opt_value, proto.vlsir.spice.Analysis, opt_index);
+};
+
+
+proto.vlsir.spice.MonteInput.prototype.clearAnList = function() {
+  this.setAnList([]);
 };
 
 
@@ -182,14 +283,14 @@ proto.vlsir.spice.OpInput.prototype.setAnalysisName = function(value) {
  * repeated Control ctrls = 5;
  * @return {!Array<!proto.vlsir.spice.Control>}
  */
-proto.vlsir.spice.OpInput.prototype.getCtrlsList = function() {
+proto.vlsir.spice.MonteInput.prototype.getCtrlsList = function() {
   return /** @type{!Array<!proto.vlsir.spice.Control>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.vlsir.spice.Control, 5));
 };
 
 
 /** @param {!Array<!proto.vlsir.spice.Control>} value */
-proto.vlsir.spice.OpInput.prototype.setCtrlsList = function(value) {
+proto.vlsir.spice.MonteInput.prototype.setCtrlsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 5, value);
 };
 
@@ -199,12 +300,12 @@ proto.vlsir.spice.OpInput.prototype.setCtrlsList = function(value) {
  * @param {number=} opt_index
  * @return {!proto.vlsir.spice.Control}
  */
-proto.vlsir.spice.OpInput.prototype.addCtrls = function(opt_value, opt_index) {
+proto.vlsir.spice.MonteInput.prototype.addCtrls = function(opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(this, 5, opt_value, proto.vlsir.spice.Control, opt_index);
 };
 
 
-proto.vlsir.spice.OpInput.prototype.clearCtrlsList = function() {
+proto.vlsir.spice.MonteInput.prototype.clearCtrlsList = function() {
   this.setCtrlsList([]);
 };
 

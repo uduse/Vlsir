@@ -7,12 +7,12 @@
  */
 // GENERATED CODE -- DO NOT EDIT!
 
-goog.provide('proto.vlsir.spice.SimResult');
+goog.provide('proto.vlsir.circuit.Concat');
 
 goog.require('jspb.BinaryReader');
 goog.require('jspb.BinaryWriter');
 goog.require('jspb.Message');
-goog.require('proto.vlsir.spice.AnalysisResult');
+goog.require('proto.vlsir.circuit.ConnectionTarget');
 
 
 /**
@@ -25,19 +25,19 @@ goog.require('proto.vlsir.spice.AnalysisResult');
  * @extends {jspb.Message}
  * @constructor
  */
-proto.vlsir.spice.SimResult = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.vlsir.spice.SimResult.repeatedFields_, null);
+proto.vlsir.circuit.Concat = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.vlsir.circuit.Concat.repeatedFields_, null);
 };
-goog.inherits(proto.vlsir.spice.SimResult, jspb.Message);
+goog.inherits(proto.vlsir.circuit.Concat, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
-  proto.vlsir.spice.SimResult.displayName = 'proto.vlsir.spice.SimResult';
+  proto.vlsir.circuit.Concat.displayName = 'proto.vlsir.circuit.Concat';
 }
 /**
  * List of repeated fields within this message type.
  * @private {!Array<number>}
  * @const
  */
-proto.vlsir.spice.SimResult.repeatedFields_ = [1];
+proto.vlsir.circuit.Concat.repeatedFields_ = [1];
 
 
 
@@ -52,8 +52,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     for transitional soy proto support: http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.vlsir.spice.SimResult.prototype.toObject = function(opt_includeInstance) {
-  return proto.vlsir.spice.SimResult.toObject(opt_includeInstance, this);
+proto.vlsir.circuit.Concat.prototype.toObject = function(opt_includeInstance) {
+  return proto.vlsir.circuit.Concat.toObject(opt_includeInstance, this);
 };
 
 
@@ -62,14 +62,14 @@ proto.vlsir.spice.SimResult.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Whether to include the JSPB
  *     instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.vlsir.spice.SimResult} msg The msg instance to transform.
+ * @param {!proto.vlsir.circuit.Concat} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.vlsir.spice.SimResult.toObject = function(includeInstance, msg) {
+proto.vlsir.circuit.Concat.toObject = function(includeInstance, msg) {
   var f, obj = {
-    anList: jspb.Message.toObjectList(msg.getAnList(),
-    proto.vlsir.spice.AnalysisResult.toObject, includeInstance)
+    partsList: jspb.Message.toObjectList(msg.getPartsList(),
+    proto.vlsir.circuit.ConnectionTarget.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -83,23 +83,23 @@ proto.vlsir.spice.SimResult.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.vlsir.spice.SimResult}
+ * @return {!proto.vlsir.circuit.Concat}
  */
-proto.vlsir.spice.SimResult.deserializeBinary = function(bytes) {
+proto.vlsir.circuit.Concat.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.vlsir.spice.SimResult;
-  return proto.vlsir.spice.SimResult.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.vlsir.circuit.Concat;
+  return proto.vlsir.circuit.Concat.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.vlsir.spice.SimResult} msg The message object to deserialize into.
+ * @param {!proto.vlsir.circuit.Concat} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.vlsir.spice.SimResult}
+ * @return {!proto.vlsir.circuit.Concat}
  */
-proto.vlsir.spice.SimResult.deserializeBinaryFromReader = function(msg, reader) {
+proto.vlsir.circuit.Concat.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -107,9 +107,9 @@ proto.vlsir.spice.SimResult.deserializeBinaryFromReader = function(msg, reader) 
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.vlsir.spice.AnalysisResult;
-      reader.readMessage(value,proto.vlsir.spice.AnalysisResult.deserializeBinaryFromReader);
-      msg.addAn(value);
+      var value = new proto.vlsir.circuit.ConnectionTarget;
+      reader.readMessage(value,proto.vlsir.circuit.ConnectionTarget.deserializeBinaryFromReader);
+      msg.addParts(value);
       break;
     default:
       reader.skipField();
@@ -124,9 +124,9 @@ proto.vlsir.spice.SimResult.deserializeBinaryFromReader = function(msg, reader) 
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.vlsir.spice.SimResult.prototype.serializeBinary = function() {
+proto.vlsir.circuit.Concat.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.vlsir.spice.SimResult.serializeBinaryToWriter(this, writer);
+  proto.vlsir.circuit.Concat.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -134,51 +134,51 @@ proto.vlsir.spice.SimResult.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.vlsir.spice.SimResult} message
+ * @param {!proto.vlsir.circuit.Concat} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.vlsir.spice.SimResult.serializeBinaryToWriter = function(message, writer) {
+proto.vlsir.circuit.Concat.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAnList();
+  f = message.getPartsList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       1,
       f,
-      proto.vlsir.spice.AnalysisResult.serializeBinaryToWriter
+      proto.vlsir.circuit.ConnectionTarget.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * repeated AnalysisResult an = 1;
- * @return {!Array<!proto.vlsir.spice.AnalysisResult>}
+ * repeated ConnectionTarget parts = 1;
+ * @return {!Array<!proto.vlsir.circuit.ConnectionTarget>}
  */
-proto.vlsir.spice.SimResult.prototype.getAnList = function() {
-  return /** @type{!Array<!proto.vlsir.spice.AnalysisResult>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.vlsir.spice.AnalysisResult, 1));
+proto.vlsir.circuit.Concat.prototype.getPartsList = function() {
+  return /** @type{!Array<!proto.vlsir.circuit.ConnectionTarget>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.vlsir.circuit.ConnectionTarget, 1));
 };
 
 
-/** @param {!Array<!proto.vlsir.spice.AnalysisResult>} value */
-proto.vlsir.spice.SimResult.prototype.setAnList = function(value) {
+/** @param {!Array<!proto.vlsir.circuit.ConnectionTarget>} value */
+proto.vlsir.circuit.Concat.prototype.setPartsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
 
 /**
- * @param {!proto.vlsir.spice.AnalysisResult=} opt_value
+ * @param {!proto.vlsir.circuit.ConnectionTarget=} opt_value
  * @param {number=} opt_index
- * @return {!proto.vlsir.spice.AnalysisResult}
+ * @return {!proto.vlsir.circuit.ConnectionTarget}
  */
-proto.vlsir.spice.SimResult.prototype.addAn = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.vlsir.spice.AnalysisResult, opt_index);
+proto.vlsir.circuit.Concat.prototype.addParts = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.vlsir.circuit.ConnectionTarget, opt_index);
 };
 
 
-proto.vlsir.spice.SimResult.prototype.clearAnList = function() {
-  this.setAnList([]);
+proto.vlsir.circuit.Concat.prototype.clearPartsList = function() {
+  this.setPartsList([]);
 };
 
 

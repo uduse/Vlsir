@@ -148,6 +148,7 @@ class SpectreSim(Sim):
             dc=self.netlist_dc,
             op=self.netlist_op,
             tran=self.netlist_tran,
+            custom=self.netlist_custom,
         )
         inner_dispatch[inner](getattr(an, inner), netlist_file)
 
@@ -218,6 +219,14 @@ class SpectreSim(Sim):
             raise NotImplementedError
 
         netlist_file.write(f"{an.analysis_name} tran stop={an.tstop} \n\n")
+    
+    def netlist_custom(self, an: vsp.CustomAnalysisInput, netlist_file: IO) -> None:
+        if not an.analysis_name:
+            raise RuntimeError(f"Analysis name required for {an}")
+        if len(an.ctrls):
+            raise NotImplementedError
+
+        netlist_file.write(f"{an.analysis_name} {an.cmd}\n\n")
 
     def parse_ac(self, an: vsp.AcInput, nutbin: "NutBinAnalysis") -> AcResult:
         # FIXME: the `mt0` and friends file names collide with tran, if they are used in the same Sim!
@@ -259,6 +268,10 @@ class SpectreSim(Sim):
         return TranResult(
             analysis_name=an.analysis_name, data=nutbin.data, measurements=measurements
         )
+
+    def parse_custom(self, an: vsp.CustomAnalysisInput, 
+                     nutbin: "NutBinAnalysis") -> CustomResult:
+        return CustomAnalysisResult(data=nutbin.data)
 
     def get_measurements(self, filepat: str) -> Dict[str, float]:
         """Get the measurements at files matching (glob) `filepat`.
