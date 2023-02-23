@@ -260,7 +260,7 @@ class SpectreSim(Sim):
     def parse_op(self, an: vsp.OpInput, nutbin: "NutBinAnalysis") -> OpResult:
         return OpResult(
             analysis_name=an.analysis_name,
-            data={k: v[0] for k, v in nutbin.data.items()},
+            data={k: v for k, v in nutbin.data.items()},
         )
 
     def parse_tran(self, an: vsp.TranInput, nutbin: "NutBinAnalysis") -> TranResult:
@@ -289,7 +289,7 @@ class SpectreSim(Sim):
     def run_spectre_process(self) -> Awaitable[None]:
         """Run a Spectre sub-process, executing the simulation"""
         # Note the `nutbin` output format is dictated here
-        cmd = f"{SPECTRE_EXECUTABLE} -E -format nutbin netlist.scs"
+        cmd = f"{SPECTRE_EXECUTABLE} -E -format nutbin ++aps netlist.scs"
         return self.run_subprocess(cmd)
 
 
