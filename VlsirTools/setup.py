@@ -15,7 +15,7 @@ here = pathlib.Path(__file__).parent.resolve()
 # Get the long description from the README file
 long_description = (here / "readme.md").read_text(encoding="utf-8")
 
-_VLSIR_VERSION = "3.0.dev1"
+_VLSIR_VERSION = "4.0.dev0"
 
 setup(
     name="vlsirtools",
@@ -30,7 +30,8 @@ setup(
     python_requires=">=3.7, <4",
     install_requires=[
         f"vlsir=={_VLSIR_VERSION}",  # VLSIR Core Python Bindings
-        "numpy==1.21.5",
+        "numpy==1.21.5",  # For `sim_data` simulation results
+        "pandas",  # For CSV reading
     ],
     extras_require={
         "dev": ["pytest==7.1", "coverage", "pytest-cov", "black==22.6", "twine"]
