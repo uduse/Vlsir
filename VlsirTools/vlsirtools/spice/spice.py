@@ -82,7 +82,12 @@ def sim(
     Dispatches across `SupportedSimulators` specified in `SimOptions` `opts`.
     Uses the default `Simulator` as detected by the `default` method if no `simulator` is specified.
     """
-    return asyncio.run(sim_async(inp, opts))
+    task = sim_async(inp, opts)
+    try:
+        loop = asyncio.get_running_loop()
+        loop.create_task(task)
+    except RuntimeError as e:
+        return asyncio.run(task)
 
 
 async def sim_async(
